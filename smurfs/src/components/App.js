@@ -3,6 +3,9 @@ import Smurf from './Smurf'
 import SmurfForm from './SmurfForm'
 import './App.css';
 
+import { connect } from 'react-redux'
+import { getSmurfs } from '../actions'
+
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -11,6 +14,12 @@ import './App.css';
  */
 
 class App extends Component {
+
+  
+  componentDidMount() {
+    this.props.getSmurfs()
+  }
+
   render() {
     return (
       <div className="App">
@@ -32,4 +41,15 @@ class App extends Component {
   }
 }
 
-export default App;
+function mstp(state) {
+  return {
+    smurfs: state.smurfs,
+    fetchingSmurfs: state.fetchingSmurfs,
+    addingSmurf: state.addingSmurf,
+    updatingSmurf: state.updatingSmurf,
+    deletingSmurf: state.deletingSmurf,
+    error: state.error
+  }
+}
+
+export default connect(mstp, { getSmurfs })(App)

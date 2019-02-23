@@ -2,7 +2,7 @@
   Be sure to import in all of the action types from `../actions`
 */
 
-import { FETCHING_SMURFS, SUCCESS, ERROR, ADDING_SMURF } from '../actions'
+import { FETCHING_SMURFS, SUCCESS, ERROR, ADDING_SMURF, DELETING_SMURF} from '../actions'
 
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
@@ -36,34 +36,35 @@ const initialState = {
 function reducer (state = initialState, action) {
   console.log('reducer', action)
   switch(action.type) {
-
     case FETCHING_SMURFS:
     return {
       ...state,
       fetchingSmurfs: true,
       error: null
     }
-
     case SUCCESS:
     return {
       ...state,
       smurfs: action.payload,
       error: null
     }
-
     case ERROR:
     return {
       ...state,
       error: action.payload
     }
-
     case ADDING_SMURF:
     return {
       ...state,
       addingSmurf: true,
       error: null
     }
-
+    case DELETING_SMURF:
+    return {
+      ...state,
+      deletingSmurf: true,
+      error: null
+    }
   default:
     return state
   }
